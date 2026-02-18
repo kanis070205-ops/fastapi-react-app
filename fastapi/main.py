@@ -10,7 +10,8 @@ Base.metadata.create_all(bind=engine)
 app=FastAPI()
 
 origins = [
-    "http://localhost:3000",   
+    "http://localhost:3000",
+    "https://react-frontend-71z5.onrender.com"  
 ]
 
 app.add_middleware(
