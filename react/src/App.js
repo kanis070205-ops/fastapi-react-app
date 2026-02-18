@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from "react";
 import api from "./api";
 
-
+console.log("DEPLOY TEST FRONTEND");
 const App=()=>{
   const[transactions,setTransactions]=useState([]);
   const[formData,setFormData]=useState({

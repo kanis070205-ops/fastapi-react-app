@@ -44,7 +44,7 @@ def get_db():
 
 db_dependency = Annotated[Session, Depends(get_db)]
 
-print("CI gated deploy test")
+print("DEPLOY TEST BACKEND")
 
 
 @app.post("/transactions/", response_model=TransactionModel)
@@ -59,14 +59,3 @@ async def create_transaction(transactions: TransactionBase, db: db_dependency):
 async def read_transactions(db: db_dependency ,skip: int = 0, limit: int = 100):
     transactions = db.query(models.Transaction).offset(skip).limit(limit).all()
     return transactions
-
-
-# Delete transaction by description
-@app.delete("/transactions/{description}")
-async def delete_transaction(description: str, db: db_dependency):
-    transaction = db.query(models.Transaction).filter(models.Transaction.description == description).first()
-    if transaction is None:
-        raise HTTPException(status_code=404, detail="Transaction not found")
-    db.delete(transaction)
-    db.commit()
-    return {"detail": "Transaction deleted"}
