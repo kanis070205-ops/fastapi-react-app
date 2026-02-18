@@ -44,6 +44,7 @@ def get_db():
 
 db_dependency = Annotated[Session, Depends(get_db)]
 
+print("CI gated deploy test")
 
 
 @app.post("/transactions/", response_model=TransactionModel)
